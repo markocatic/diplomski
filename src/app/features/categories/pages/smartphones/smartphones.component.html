@@ -1,0 +1,15 @@
+<div class="container">
+  <div fxFlex="15"></div>
+  <div fxFlex="70" fxLayout="row wrap">
+    <div fxFlex="100"><h2>Mobile phones and gadgets</h2></div>
+    <div fxFlex="15" class="category-menu">
+      <app-phone-category></app-phone-category>
+    </div>
+    <div fxFlex="85" fxLayout="row wrap" fxLayoutAlign="start" class="product-menu">
+      <div fxFlex="25" *ngFor="let n of array" class="product-cards">
+        <app-product-cards></app-product-cards>
+      </div>
+    </div>
+  </div>
+  <div fxFlex="15"></div>
+</div>

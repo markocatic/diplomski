@@ -1,0 +1,31 @@
+.mat-card {
+    background: #fff;
+    color: #000;
+    border-radius: 0;
+    border: 1px solid #dad8d8;
+}
+.button-full-width {
+    width: 100%;
+    background-color: #f9ce09;
+    font-weight: 700;
+    border-radius: 0;
+}
+.mat-card:not([class*=mat-elevation-z]) {
+    box-shadow: none;
+}
+.card-description {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #353535;
+    border-bottom: 1px solid #dad8d8;
+    padding-bottom: 8%;
+    line-height: 13px;
+    letter-spacing: normal;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+.price-card {
+    font-weight: 400;
+}

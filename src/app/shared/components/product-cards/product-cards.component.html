@@ -1,0 +1,29 @@
+<mat-card>
+  <!-- <mat-card-header>
+    <mat-card-title>Shiba Inu</mat-card-title>
+  </mat-card-header> -->
+  <a href="#"
+    ><img
+      mat-card-image
+      src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+      alt="Photo of a Shiba Inu"
+    />
+  </a>
+  <mat-card-content>
+    <p class="card-description">
+      <a href="#">{{ product.name }} {{ product.description_short }}</a>
+    </p>
+  </mat-card-content>
+  <mat-card-content>
+    <h4 class="price-card">{{ product.price | currency: "EUR":"symbol":"4.2-2":"de" }}</h4>
+  </mat-card-content>
+  <!-- <hr class="hr-line"> -->
+  <mat-card-actions>
+    <button mat-button class="button-full-width">
+      Buy
+      <i class="material-icons">
+        shopping_cart
+      </i>
+    </button>
+  </mat-card-actions>
+</mat-card>

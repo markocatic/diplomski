@@ -1,1 +1,79 @@
-/* You can add global styles to this file, and also import other style files */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 10px;
+  font-family: "Roboto", sans-serif;
+  color: #444;
+}
+a {
+  font-size: 1.3rem;
+  color: #444;
+  text-decoration: none;
+
+  // &:hover {
+  //   text-decoration: underline;
+  // }
+}
+h3,
+h4 {
+  margin: 2rem 0;
+}
+.h1,
+h1 {
+  font-size: 2.2rem;
+  line-height: 2.4rem;
+  font-weight: 700;
+  color: #444;
+  margin: 30px 0 20px 0;
+}
+.h2,
+h2 {
+  font-size: 2rem;
+  line-height: 2.4rem;
+  font-weight: 700;
+  color: #444;
+}
+
+.h3,
+h3 {
+  font-size: 1.8rem;
+  line-height: 2.1rem;
+  font-weight: 500;
+  color: #444;
+  margin: 20px 0 15px 0;
+}
+// .hr-line {
+//   background-color: black;
+// }
+.container {
+  margin-top: 1%;
+}
+.product-menu {
+  padding-left: 2%;
+}
+.category-menu {
+  // border-right: 1px solid #dad8d8;
+
+  & h3 {
+    font-weight: 300;
+  }
+}
+.brand {
+  padding-bottom: 9%;
+  border-bottom: 1px solid #dad8d8;
+  border-right: 1px solid #dad8d8; //ukloniti ako uzimas full duzine border
+}
+.price {
+  padding-bottom: 9%;
+  border-bottom: 1px solid #dad8d8;
+  border-right: 1px solid #dad8d8; //ukloniti ako uzimas full duzine border
+}
+.order {
+  padding-bottom: 9%;
+  border-right: 1px solid #dad8d8;
+}
+.category-label {
+  margin: 0;
+  padding: 10% 0;
+}

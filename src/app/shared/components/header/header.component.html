@@ -1,0 +1,68 @@
+<mat-toolbar>
+  <div fxFlex="15"></div>
+  <div fxFlex="70" fxLayoutGap="20px">
+    <div class="vert-align" fxLayoutAlign="start center">
+      <a><img src="../assets/img/phoniac.png" class="phoniac-img" alt="navbar-img" /></a>
+    </div>
+    <div fxFlex fxLayoutAlign="start">
+      <form class="example-form">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Search..." />
+        </mat-form-field>
+      </form>
+    </div>
+  </div>
+  <div fxFlex="15"></div>
+</mat-toolbar>
+<mat-toolbar>
+  <div fxFlex="15"></div>
+  <div fxFlex="60">
+    <div class="nav-menu">
+      <a fxFlex class="highlight-dropdown" [matMenuTriggerFor]="firstMenu">
+        Categories
+        <span class="float-arrow"
+          ><i class="material-icons dropdown-arrow">
+            keyboard_arrow_down
+          </i></span
+        ></a
+      >
+      <mat-menu #firstMenu="matMenu">
+        <button mat-menu-item [matMenuTriggerFor]="phones" (click)="navigateToSmartphones()" >Smartphones</button>
+        <button mat-menu-item [matMenuTriggerFor]="tv">TV</button>
+      </mat-menu>
+      <mat-menu #phones="matMenu" >
+        <button mat-menu-item (click)="navigateToSmartphones()">Samsung</button>
+        <button mat-menu-item>Apple</button>
+        <button mat-menu-item>Huawei</button>
+        <button mat-menu-item>Xiaomi</button>
+        <button mat-menu-item>Nokia</button>
+      </mat-menu>
+      <mat-menu #tv="matMenu">
+          <button mat-menu-item>Samsung</button>
+          <button mat-menu-item>FOX</button>
+          <button mat-menu-item>VOX</button>
+          <button mat-menu-item>LG</button>
+        </mat-menu>
+      <a fxFlex class="nav-font">Author</a>
+      <a fxFlex class="nav-font">Contact</a>
+      <a fxFlex [matMenuTriggerFor]="secondMenu" class="account-dropdown nav-font">Account <span class="float-arrow"
+        ><i class="material-icons dropdown-arrow">
+          keyboard_arrow_down
+        </i></span
+      ></a>
+      <mat-menu #secondMenu="matMenu">
+        <a mat-menu-item>Register</a>
+        <a mat-menu-item>Login</a>
+      </mat-menu>
+    </div>
+  </div>
+  <div fxFlex="10" class="link-icon">
+    <a>
+      <i class="material-icons">
+        shopping_cart
+      </i>
+    </a>
+    <span class="money-value">0.00 RSD</span>
+  </div>
+  <div fxFlex="15"></div>
+</mat-toolbar>

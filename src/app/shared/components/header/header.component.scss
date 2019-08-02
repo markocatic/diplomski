@@ -1,0 +1,69 @@
+.mat-toolbar {
+  color: #c3c3c3;
+  font-size: 1.3rem;
+
+  &:last-of-type {
+    height: 70%;
+  }
+}
+.mat-toolbar a:hover {
+    color: #fff;
+}
+.mat-toolbar a:first-of-type:hover {
+    color: #000;
+}
+.example-form {
+  min-width: 150px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+  padding-bottom: 0px;
+}
+.nav-menu {
+  text-align: center;
+}
+.highlight-dropdown {
+  background-color: #f9ce09;
+  color: #000;
+  cursor: pointer;
+}
+.phoniac-img {
+  height: 56px;
+}
+.link-icon {
+  text-align: center;
+  border-left: 1px solid #999;
+
+  & i {
+    font-size: 2.3rem;
+    vertical-align: middle;
+    margin-bottom: 8px;
+  }
+}
+.money-value {
+  color: #dfbb0f;
+  padding: 5px;
+  font-size: 1.3rem;
+}
+.mat-menu-panel {
+  background: #212121;
+}
+
+.account-dropdown {
+  cursor: pointer;
+}
+.dropdown-arrow {
+    vertical-align: middle;
+    text-align: right;
+}
+.float-arrow {
+    float: right;
+}
+.mat-toolbar-row, .mat-toolbar-single-row {
+  padding: 0px;
+}
+.nav-font {
+  color: #c3c3c3;
+}
