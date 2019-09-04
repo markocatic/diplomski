@@ -13,7 +13,7 @@ const routes: Routes = [
   {
     path: "access",
     loadChildren: "./features/access/access.module#AccessModule"
-  }
+  },
 ];
 
 @NgModule({
