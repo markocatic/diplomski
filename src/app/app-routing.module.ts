@@ -9,6 +9,10 @@ const routes: Routes = [
   {
     path: "categories",
     loadChildren: "./features/categories/categories.module#CategoriesModule"
+  },
+  {
+    path: "access",
+    loadChildren: "./features/access/access.module#AccessModule"
   }
 ];
 

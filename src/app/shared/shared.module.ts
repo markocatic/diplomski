@@ -4,7 +4,6 @@ import * as fromComponents from "./components";
 import * as fromPipes from "./pipes";
 import { MaterialModule } from '../material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { ProductCardsComponent } from './components/product-cards/product-cards.component';
 
 const modules: any[] = [
   CommonModule, 
