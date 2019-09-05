@@ -4,27 +4,24 @@ import { Routes, RouterModule } from '@angular/router';
 import { CategoriesComponent } from './categories.component';
 import { SmartphonesComponent } from './pages/smartphones/smartphones.component';
 import { TvComponent } from './pages/tv/tv.component';
+import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.component';
 
 const routes: Routes = [
   {
-    path: "",
+    path: '',
     component: CategoriesComponent,
     children: [
-      { path: '', redirectTo: 'smartphones', pathMatch: 'full'},
-      { path: "smartphones", component: SmartphonesComponent },
-      { path: 'tv', component: TvComponent}
+      { path: '', redirectTo: 'smartphones', pathMatch: 'full' },
+      { path: 'smartphones', component: SmartphonesComponent },
+      { path: 'tv', component: TvComponent },
+      { path: 'cart', component: ShoppingCartComponent }
     ]
   }
 ];
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes)
-  ],
-  exports: [
-    RouterModule
-  ]
+  imports: [CommonModule, RouterModule.forChild(routes)],
+  exports: [RouterModule]
 })
-export class CategoriesRoutingModule { }
+export class CategoriesRoutingModule {}

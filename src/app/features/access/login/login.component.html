@@ -1,12 +1,9 @@
 <form class="example-form" [formGroup]="regForm" (ngSubmit)="onSubmit()">
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="Enter your email" formControlName="email">
-    </mat-form-field>
-  
-    <mat-form-field class="example-full-width">
-        <input matInput placeholder="Enter your password" formControlName="password">
-      </mat-form-field>
-      <button mat-button>Click me!</button>
-  </form>
-
-  asdasdasd
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Enter your email" formControlName="email" />
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Enter your password" formControlName="password" />
+  </mat-form-field>
+  <button mat-raised-button color="warn">Click me!</button>
+</form>

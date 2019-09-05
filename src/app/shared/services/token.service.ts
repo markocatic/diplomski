@@ -7,17 +7,34 @@ export class TokenService {
     signup: 'http://localhost:8000/api/signup'
   };
 
-  constructor() { }
+  constructor() {}
 
   handle(token) {
     this.set(token);
   }
 
+  handleUser(user) {
+    this.setUser(user);
+  }
+
   set(token) {
     localStorage.setItem('token', token);
   }
+
+  setUser(user) {
+    localStorage.setItem('user', user);
+  }
+
   get() {
-    return localStorage.getItem('token');
+    let token = localStorage.getItem('token');
+    console.log(token, 'TOKEN1');
+    return token;
+  }
+
+  getUser() {
+    let user = localStorage.getItem('user');
+    console.log(user);
+    return user;
   }
 
   remove() {
@@ -26,6 +43,7 @@ export class TokenService {
 
   isValid() {
     const token = this.get();
+    console.log(token, 'TOKEN2');
     if (token) {
       const payload = this.payload(token);
       if (payload) {

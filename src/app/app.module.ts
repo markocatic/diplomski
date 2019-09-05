@@ -14,12 +14,11 @@ import { AccessModule } from './features/access/access.module';
 import { TokenService } from './shared/services/token.service';
 import { JarService } from './shared/services/jar.service';
 import { AuthService } from './shared/services/auth.service';
-import {  HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 registerLocaleData(localeDe, 'de');
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -30,7 +29,8 @@ registerLocaleData(localeDe, 'de');
     SharedModule,
     ReactiveFormsModule,
     AccessModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule
   ],
   providers: [
     TokenService,
@@ -38,9 +38,9 @@ registerLocaleData(localeDe, 'de');
     AuthService,
     {
       provide: LOCALE_ID,
-      useValue: 'de-DE',
+      useValue: 'de-DE'
     }
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

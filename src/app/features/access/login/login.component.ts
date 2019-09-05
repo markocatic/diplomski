@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
   regForm: FormGroup = new FormGroup({
     email: new FormControl(''),
     password: new FormControl('')
@@ -22,31 +21,30 @@ export class LoginComponent implements OnInit {
     private token: TokenService,
     private auth: AuthService,
     private router: Router
-  ) { }
+  ) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onSubmit() {
     console.log(this.regForm.value.email);
     console.log(this.regForm.value.password);
 
-    this.jar.login({email: this.regForm.value.email, password: this.regForm.value.password}).subscribe(
-      data => this.handleResponse(data),
+    this.jar.login({ email: this.regForm.value.email, password: this.regForm.value.password }).subscribe(
+      data => {
+        this.handleResponse(data);
+        this.handleUser(data['user']);
+        console.log(data['user'], 'user');
+      },
       error => console.log(error)
-
-    )
+    );
   }
-
   handleResponse(data) {
     this.token.handle(data.access_token);
     this.auth.changeAuthStatus(true);
     this.router.navigateByUrl('categories/smartphones');
   }
 
-
-
-
-
-
+  handleUser(user) {
+    this.token.handleUser(user);
+  }
 }

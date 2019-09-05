@@ -5,13 +5,9 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class JarService {
-
   private baseUrl = 'http://localhost:8000/api';
 
-  constructor(
-    private http: HttpClient
-    
-  ) { }
+  constructor(private http: HttpClient) {}
 
   singup(data) {
     return this.http.post(`${this.baseUrl}/signup`, data);
