@@ -3,6 +3,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { JarService } from 'src/app/shared/services/jar.service';
 import { Router } from '@angular/router';
 import { TokenService } from 'src/app/shared/services/token.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -17,7 +18,12 @@ export class RegisterComponent implements OnInit {
     password_confirmation: new FormControl('')
   });
 
-  constructor(private jar: JarService, private router: Router, private token: TokenService) {}
+  constructor(
+    private jar: JarService,
+    private router: Router,
+    private token: TokenService,
+    private auth: AuthService
+  ) {}
 
   ngOnInit() {}
 
@@ -40,5 +46,6 @@ export class RegisterComponent implements OnInit {
   handleResponse(data) {
     this.token.handle(data.access_token);
     this.router.navigateByUrl('categories/smartphones');
+    this.auth.changeAuthStatus(true);
   }
 }
