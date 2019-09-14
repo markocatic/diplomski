@@ -7,7 +7,7 @@ const routes: Routes = [
     loadChildren: './features/admin/admin.module#AdminModule'
   },
   {
-    path: 'categories',
+    path: '',
     loadChildren: './features/categories/categories.module#CategoriesModule'
   },
   {

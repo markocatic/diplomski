@@ -6,12 +6,19 @@ import { SmartphonesComponent } from './pages/smartphones/smartphones.component'
 import { TvComponent } from './pages/tv/tv.component';
 import { PhoneCategoryComponent } from './pages/smartphones/components/phone-category/phone-category.component';
 import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.component';
+import { HomeComponent } from './pages/home/home.component';
+import { IphoneComponent } from './pages/iphone/iphone.component';
 
 @NgModule({
-  declarations: [CategoriesComponent, SmartphonesComponent, TvComponent, PhoneCategoryComponent, ShoppingCartComponent],
-  imports: [
-    SharedModule,
-    CategoriesRoutingModule
-  ]
+  declarations: [
+    CategoriesComponent,
+    SmartphonesComponent,
+    TvComponent,
+    PhoneCategoryComponent,
+    ShoppingCartComponent,
+    HomeComponent,
+    IphoneComponent
+  ],
+  imports: [SharedModule, CategoriesRoutingModule]
 })
-export class CategoriesModule { }
+export class CategoriesModule {}

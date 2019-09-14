@@ -23,16 +23,24 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": false,
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
-              {"input": "node_modules/@angular/material/prebuilt-themes/indigo-pink.css"},
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/app/css/nouislider.min.css",
+              "src/app/css/slick.css",
+              "src/app/css/slick-theme.css",
+              "src/app/css/style.css",
+              "src/app/css/font-awesome.min.css",
               "src/styles.scss"
-              
             ],
-            "scripts": []
+            "scripts": [
+              "src/app/js/jquery.min.js",
+              "src/app/js/bootstrap.min.js",
+              "src/app/js/jquery.zoom.min.js",
+              "src/app/js/main.js",
+              "src/app/js/nouislider.min.js",
+              "src/app/js/slick.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -85,27 +93,16 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.scss"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["src/styles.scss"],
             "scripts": []
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "tsconfig.app.json",
-              "tsconfig.spec.json",
-              "e2e/tsconfig.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "tsConfig": ["tsconfig.app.json", "tsconfig.spec.json", "e2e/tsconfig.json"],
+            "exclude": ["**/node_modules/**"]
           }
         },
         "e2e": {
@@ -121,6 +118,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "shopiac"
 }

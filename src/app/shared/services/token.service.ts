@@ -41,6 +41,10 @@ export class TokenService {
     localStorage.removeItem('token');
   }
 
+  removeUser() {
+    localStorage.removeItem('user');
+  }
+
   isValid() {
     const token = this.get();
     console.log(token, 'TOKEN2');

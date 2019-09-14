@@ -8,13 +8,15 @@ export class Product {
   // private _image?: string;
 
   constructor(
+    public id?: number,
     public product_id?: number,
     public brand?: string,
     public name?: string,
-    public description_showrt?: string,
+    public description_short?: string,
     public description?: string,
     public price?: number,
-    public image?: string
+    public image_id?: string,
+    public image_path?: string
   ) {
     // this._product_id = product_id;
     // this._brand = brand;
