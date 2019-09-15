@@ -8,6 +8,8 @@ import { PhoneCategoryComponent } from './pages/smartphones/components/phone-cat
 import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.component';
 import { HomeComponent } from './pages/home/home.component';
 import { IphoneComponent } from './pages/iphone/iphone.component';
+import { ItemComponent } from './pages/item/item.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,8 +19,9 @@ import { IphoneComponent } from './pages/iphone/iphone.component';
     PhoneCategoryComponent,
     ShoppingCartComponent,
     HomeComponent,
-    IphoneComponent
+    IphoneComponent,
+    ItemComponent
   ],
-  imports: [SharedModule, CategoriesRoutingModule]
+  imports: [SharedModule, CategoriesRoutingModule, FormsModule, ReactiveFormsModule]
 })
 export class CategoriesModule {}

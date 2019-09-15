@@ -3,6 +3,7 @@ import { TokenService } from 'src/app/shared/services/token.service';
 import { CategoriesService } from '../../services/categories.service';
 import { Product } from 'src/app/shared/models/product.model';
 import { Cart } from 'src/app/shared/models/cart.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-smartphones',
@@ -15,7 +16,11 @@ export class SmartphonesComponent implements OnInit {
 
   products: Product[];
 
-  constructor(private tokenService: TokenService, private categoriesService: CategoriesService) {}
+  constructor(
+    private tokenService: TokenService,
+    private categoriesService: CategoriesService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     console.log(this.tokenService.getUser());
@@ -39,5 +44,9 @@ export class SmartphonesComponent implements OnInit {
         console.log(response);
         this.categoriesService.toRefreshNavigation(true);
       });
+  }
+
+  navigateToProduct(id: number) {
+    this.router.navigate(['item', id]);
   }
 }

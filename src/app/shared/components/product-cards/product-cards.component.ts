@@ -12,6 +12,6 @@ export class ProductCardsComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    this.product = new Product(1, 'nokia', 'marko', 'short desc', 'opis', 12112, '');
+    // this.product = new Product(1, 'nokia', 'marko', 'short desc', 'opis', 12112, '');
   }
 }

@@ -7,6 +7,7 @@ import { TvComponent } from './pages/tv/tv.component';
 import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.component';
 import { HomeComponent } from './pages/home/home.component';
 import { IphoneComponent } from './pages/iphone/iphone.component';
+import { ItemComponent } from './pages/item/item.component';
 
 const routes: Routes = [
   {
@@ -18,7 +19,8 @@ const routes: Routes = [
       { path: 'smartphones', component: SmartphonesComponent },
       { path: 'tv', component: TvComponent },
       { path: 'cart', component: ShoppingCartComponent },
-      { path: 'iphone', component: IphoneComponent }
+      { path: 'iphone', component: IphoneComponent },
+      { path: 'item/:id', component: ItemComponent }
     ]
   }
 ];

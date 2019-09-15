@@ -36,10 +36,10 @@
             "scripts": [
               "src/app/js/jquery.min.js",
               "src/app/js/bootstrap.min.js",
+              "src/app/js/slick.min.js",
               "src/app/js/jquery.zoom.min.js",
               "src/app/js/main.js",
-              "src/app/js/nouislider.min.js",
-              "src/app/js/slick.min.js"
+              "src/app/js/nouislider.min.js"
             ]
           },
           "configurations": {

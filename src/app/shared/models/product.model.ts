@@ -11,6 +11,7 @@ export class Product {
     public id?: number,
     public product_id?: number,
     public brand?: string,
+    public brand_id?: number,
     public name?: string,
     public description_short?: string,
     public description?: string,

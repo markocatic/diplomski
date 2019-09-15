@@ -27,7 +27,7 @@ export class CategoriesService {
   }
 
   getCartItems(id: number): Observable<Cart[]> {
-    return this.http.get<Cart[]>(`${this.baseUrl}/getUserCart/${id}`);
+    return this.http.post<Cart[]>(`${this.baseUrl}/getUserCart`, id);
   }
 
   addCartItem(user_id: number, product_id: number, quantity: number): Observable<Cart> {
@@ -40,5 +40,9 @@ export class CategoriesService {
 
   toRefreshNavigation(refresh: boolean) {
     this._refreshNavigation.next(refresh);
+  }
+
+  getOneProduct(id: number): Observable<Product> {
+    return this.http.get<Product>(`${this.baseUrl}/getOneProduct/${id}`);
   }
 }
