@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Product } from 'src/app/shared/models/product.model';
 import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
+import { CategoriesService } from '../../services/categories.service';
+import { TokenService } from 'src/app/shared/services/token.service';
+import { Cart } from 'src/app/shared/models/cart.model';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -8,28 +11,27 @@ import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
   styleUrls: ['./shopping-cart.component.scss']
 })
 export class ShoppingCartComponent implements OnInit {
-  products: Product[] = [
-    { name: '123', description: 'asdasd', price: 1231 },
-    { name: '123', description: 'asdasd', price: 123 },
-    { name: '123', description: 'asdasd', price: 123 },
-    { name: '123', description: 'asdasd', price: 123 },
-    { name: '123', description: 'asdasd', price: 123 },
-    { name: '123', description: 'asdasd', price: 123 },
-    { name: '123', description: 'asdasd', price: 123 },
-    { name: '123', description: 'asdasd', price: 123 },
-    { name: '123', description: 'asdasd', price: 123 },
-    { name: '123', description: 'asdasd', price: 123 }
-  ];
+  user_id: number;
+  carts: Cart[];
 
-  dataSource = new MatTableDataSource<Product>(this.products);
-  displayedColumns: string[] = ['name', 'description', 'price'];
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
-  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-
-  constructor() {}
+  constructor(private categoriesService: CategoriesService, private tokenService: TokenService) {}
 
   ngOnInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    this.user_id = +this.tokenService.getUser();
+    this.categoriesService.getCartItems(this.user_id).subscribe((response: Cart[]) => {
+      console.log(response, 'CART COMPONENT ITEMS');
+      this.carts = response;
+    });
+  }
+
+  removeFromCart(id: number) {
+    this.categoriesService.deleteCartItem(id).subscribe((response: Cart) => {
+      console.log(response, 'deleted item from cart');
+      this.categoriesService.getCartItems(this.user_id).subscribe((response: Cart[]) => {
+        console.log(response, 'CART');
+        this.carts = response;
+        this.categoriesService.toRefreshNavigation(true);
+      });
+    });
   }
 }

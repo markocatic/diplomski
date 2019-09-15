@@ -49,18 +49,6 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  navigateToSmartphones() {
-    this.router.navigateByUrl('/categories');
-  }
-
-  navigateToLogin() {
-    this.router.navigateByUrl('access/login');
-  }
-
-  navigateToRegister() {
-    this.router.navigateByUrl('access/register');
-  }
-
   logout(event: MouseEvent) {
     event.preventDefault;
     this.token.remove();

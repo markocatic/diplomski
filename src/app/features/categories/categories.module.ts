@@ -10,6 +10,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { IphoneComponent } from './pages/iphone/iphone.component';
 import { ItemComponent } from './pages/item/item.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { JwPaginationComponent } from 'jw-angular-pagination';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ShoppingCartComponent,
     HomeComponent,
     IphoneComponent,
-    ItemComponent
+    ItemComponent,
+    JwPaginationComponent
   ],
   imports: [SharedModule, CategoriesRoutingModule, FormsModule, ReactiveFormsModule]
 })

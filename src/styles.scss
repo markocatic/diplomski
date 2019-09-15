@@ -86,3 +86,11 @@
 a:not([href]):not([tabindex]) {
   color: #fff;
 }
+.pagination .page-item .page-link {
+  color: #333 !important;
+}
+.page-item.active .page-link {
+  background-color: #d10024;
+  border-color: #d10024;
+  color: #fff !important;
+}

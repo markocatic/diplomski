@@ -11,10 +11,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./smartphones.component.scss']
 })
 export class SmartphonesComponent implements OnInit {
-  array: number[] = new Array<number>(9).fill(1);
   user_id: number;
-
+  pageOfItems: Array<any>;
   products: Product[];
+  showSize: number = 9;
 
   constructor(
     private tokenService: TokenService,
@@ -37,6 +37,10 @@ export class SmartphonesComponent implements OnInit {
     });
   }
 
+  onChangePage(pageOfItems: Array<any>) {
+    this.pageOfItems = pageOfItems;
+  }
+
   addToCart(product_id: number, quantity?) {
     this.categoriesService
       .addCartItem(this.user_id, product_id, quantity ? quantity : 1)
@@ -48,5 +52,10 @@ export class SmartphonesComponent implements OnInit {
 
   navigateToProduct(id: number) {
     this.router.navigate(['item', id]);
+  }
+
+  onChange(event) {
+    console.log(event);
+    this.showSize = +event;
   }
 }

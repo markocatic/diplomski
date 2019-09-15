@@ -15,6 +15,7 @@ import { TokenService } from './shared/services/token.service';
 import { JarService } from './shared/services/jar.service';
 import { AuthService } from './shared/services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
+import { JwPaginationComponent } from 'jw-angular-pagination';
 import { RouterModule } from '@angular/router';
 registerLocaleData(localeDe, 'de');
 @NgModule({
