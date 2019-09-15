@@ -77,7 +77,7 @@
     <div class="container">
       <ul class="header-links pull-left">
         <li>
-          <a href="#"><i class="fa fa-phone"></i> +381/65-000-0000</a>
+          <a routerLink="home"><i class="fa fa-phone"></i> +381/65-000-0000</a>
         </li>
         <li>
           <a href="mailto: marko.catic.187.15@ict.edu.rs"
@@ -85,7 +85,7 @@
           >
         </li>
         <li>
-          <a href="#"><i class="fa fa-map-marker"></i> Street 1, Serbia</a>
+          <a routerLink="home"><i class="fa fa-map-marker"></i> Street 1, Serbia</a>
         </li>
       </ul>
       <ul class="header-links pull-right">
@@ -216,11 +216,13 @@
     <div id="responsive-nav">
       <!-- NAV -->
       <ul class="main-nav nav navbar-nav">
-        <li><a routerLink="">Home</a></li>
-        <li><a routerLink="smartphones">Smartphones</a></li>
-        <li><a routerLink="tv">TV</a></li>
-        <li><a routerLink="iphone">iPhones</a></li>
-        <li><a routerLink="cart">Cart</a></li>
+        <li><a routerLink="home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a></li>
+        <li><a routerLink="smartphones" routerLinkActive="active">Smartphones</a></li>
+        <li><a routerLink="tv" routerLinkActive="active">TV</a></li>
+        <li><a routerLink="iphone" routerLinkActive="active">iPhones</a></li>
+        <li><a routerLink="author" routerLinkActive="active">Author</a></li>
+        <li><a routerLink="contact" routerLinkActive="active">Contact</a></li>
+        <li><a routerLink="cart" routerLinkActive="active">Cart</a></li>
       </ul>
       <!-- /NAV -->
     </div>

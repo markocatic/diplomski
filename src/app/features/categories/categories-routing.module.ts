@@ -8,6 +8,8 @@ import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.compo
 import { HomeComponent } from './pages/home/home.component';
 import { IphoneComponent } from './pages/iphone/iphone.component';
 import { ItemComponent } from './pages/item/item.component';
+import { AuthorComponent } from './pages/author/author.component';
+import { ContactComponent } from './pages/contact/contact.component';
 
 const routes: Routes = [
   {
@@ -20,7 +22,10 @@ const routes: Routes = [
       { path: 'tv', component: TvComponent },
       { path: 'cart', component: ShoppingCartComponent },
       { path: 'iphone', component: IphoneComponent },
-      { path: 'item/:id', component: ItemComponent }
+      { path: 'item/:id', component: ItemComponent },
+      { path: 'author', component: AuthorComponent},
+      { path: 'contact', component: ContactComponent},
+      { path: '**', redirectTo: 'home'}
     ]
   }
 ];
