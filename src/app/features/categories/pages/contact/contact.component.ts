@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-contact',
@@ -6,10 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./contact.component.scss']
 })
 export class ContactComponent implements OnInit {
+  private $path = 'http://localhost:8000/api';
+  items;
 
-  constructor() { }
+  constructor(private http: HttpClient) {}
 
   ngOnInit() {
+    this.http.get(`${this.$path}/info`).subscribe(
+      response => {
+        console.log(response), (this.items = response);
+      },
+      error => {}
+    );
   }
-
 }

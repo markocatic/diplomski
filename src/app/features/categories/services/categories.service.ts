@@ -45,4 +45,16 @@ export class CategoriesService {
   getOneProduct(id: number): Observable<Product> {
     return this.http.get<Product>(`${this.baseUrl}/getOneProduct/${id}`);
   }
+
+  getWishlist(id: number): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.baseUrl}/userList/${id}`);
+  }
+
+  insertWishlist(user_id: number, product_id): Observable<boolean> {
+    return this.http.post<boolean>(`${this.baseUrl}/insert`, { user_id, product_id });
+  }
+
+  deleteWishList(product_id: number): Observable<boolean> {
+    return this.http.post<boolean>(`${this.baseUrl}/delete`, product_id);
+  }
 }

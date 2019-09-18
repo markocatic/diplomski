@@ -5,6 +5,7 @@ import { TokenService } from '../../services/token.service';
 import { CategoriesService } from 'src/app/features/categories/services/categories.service';
 import { Cart } from '../../models/cart.model';
 import { Observable } from 'rxjs';
+import { Product } from '../../models/product.model';
 
 @Component({
   selector: 'app-header',
@@ -16,6 +17,8 @@ export class HeaderComponent implements OnInit {
   carts: Cart[];
   cartNumber: number;
   cartPrice: number;
+  wishlist: Product[];
+  wishlistNumber: number;
 
   constructor(
     private router: Router,
@@ -47,6 +50,13 @@ export class HeaderComponent implements OnInit {
         console.log(this.cartPrice, 'PRICE');
       });
     });
+
+    this.categoryService.getWishlist(this.user_id).subscribe((response: Product[]) => {
+      console.log('wishlist', response);
+      console.log('user id', this.user_id);
+      this.wishlist = response;
+      this.wishlistNumber = response.length;
+    });
   }
 
   logout(event: MouseEvent) {
@@ -68,6 +78,18 @@ export class HeaderComponent implements OnInit {
         this.cartPrice = this.carts.reduce((previous, current) => previous + +current.price * current.quantity, 0);
         console.log(this.cartPrice, 'PRICE');
       });
+    });
+  }
+
+  deleteWishlist(product_id: number) {
+    this.categoryService.deleteWishList(product_id).subscribe((response: boolean) => {
+      console.log(response, 'wishlist deleted');
+    });
+  }
+
+  insertWishlist(user_id: number, product_id: number) {
+    this.categoryService.insertWishlist(user_id, product_id).subscribe((response: boolean) => {
+      console.log(response, 'wishlist inserted');
     });
   }
 }

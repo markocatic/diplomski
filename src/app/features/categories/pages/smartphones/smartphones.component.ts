@@ -15,6 +15,7 @@ export class SmartphonesComponent implements OnInit {
   pageOfItems: Array<any>;
   products: Product[];
   showSize: number = 9;
+  priceValue: number;
 
   constructor(
     private tokenService: TokenService,
@@ -57,5 +58,26 @@ export class SmartphonesComponent implements OnInit {
   onChange(event) {
     console.log(event);
     this.showSize = +event;
+  }
+
+  changeRadio(event) {
+    if (event === 'all') {
+      this.categoriesService.getAllProducts().subscribe((response: Product[]) => {
+        this.products = response;
+      });
+    } else if (event === 'samsung') {
+      this.categoriesService.getSamsungProducts().subscribe((response: Product[]) => {
+        this.products = response;
+      });
+    } else {
+      this.categoriesService.getIphoneProducts().subscribe((response: Product[]) => {
+        this.products = response;
+      });
+    }
+  }
+
+  changePrice() {
+    console.log(this.priceValue);
+    // this.products = this.products.filter(item => item.price > this.priceValue);
   }
 }

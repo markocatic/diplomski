@@ -2,13 +2,13 @@
 <p class="text-center w-75 m-auto">
   Send us a message! We will try to answer you as soon as possible, and help you as much as we can.
 </p>
-<div class="row">
+<div class="row" *ngIf="items">
   <div class="col-sm-12 col-md-6 col-lg-3 my-5">
     <div class="card border-0">
       <div class="card-body text-center">
         <i class="fa fa-phone fa-5x mb-3" aria-hidden="true"></i>
         <h4 class="text-uppercase mb-5">call us</h4>
-        <p>+381/65-000-0000</p>
+        <p>{{ items.phone }}</p>
       </div>
     </div>
   </div>
@@ -17,7 +17,7 @@
       <div class="card-body text-center">
         <i class="fa fa-map-marker fa-5x mb-3" aria-hidden="true"></i>
         <h4 class="text-uppercase mb-5">office loaction</h4>
-        <address>Street 1, Serbia</address>
+        <address>{{ items.location }}</address>
       </div>
     </div>
   </div>
@@ -26,7 +26,7 @@
       <div class="card-body text-center">
         <i class="fa fa-map-marker fa-5x mb-3" aria-hidden="true"></i>
         <h4 class="text-uppercase mb-5">office loaction</h4>
-        <address>Street 2, Serbia</address>
+        <address>{{ items.location2 }}</address>
       </div>
     </div>
   </div>
@@ -35,7 +35,7 @@
       <div class="card-body text-center">
         <i class="fa fa-globe fa-5x mb-3" aria-hidden="true"></i>
         <h4 class="text-uppercase mb-5">email</h4>
-        <a href="mailto: marko.catic.187.15@ict.edu.rs">marko.catic.187.15@ict.edu.rs</a>
+        <a href="mailto: {{ items.email }}">{{ items.email }}</a>
       </div>
     </div>
   </div>
