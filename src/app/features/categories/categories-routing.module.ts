@@ -10,6 +10,8 @@ import { IphoneComponent } from './pages/iphone/iphone.component';
 import { ItemComponent } from './pages/item/item.component';
 import { AuthorComponent } from './pages/author/author.component';
 import { ContactComponent } from './pages/contact/contact.component';
+import { LaptopComponent } from './pages/laptop/laptop.component';
+import { CheckoutComponent } from './pages/checkout/checkout.component';
 
 const routes: Routes = [
   {
@@ -23,9 +25,11 @@ const routes: Routes = [
       { path: 'cart', component: ShoppingCartComponent },
       { path: 'iphone', component: IphoneComponent },
       { path: 'item/:id', component: ItemComponent },
-      { path: 'author', component: AuthorComponent},
-      { path: 'contact', component: ContactComponent},
-      { path: '**', redirectTo: 'home'}
+      { path: 'author', component: AuthorComponent },
+      { path: 'contact', component: ContactComponent },
+      { path: 'laptop', component: LaptopComponent },
+      { path: 'checkout', component: CheckoutComponent }
+      // { path: '**', redirectTo: 'home', pathMatch: 'full' }
     ]
   }
 ];

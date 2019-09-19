@@ -54,15 +54,15 @@
   <div class="col-md-6">
     <h3 class="title">Contact Us</h3>
     <h3 class="subtitle">We are here assist you.</h3>
-    <form action="">
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit(contactForm)">
       <div class="form-group">
-        <input class="form-control form-control-lg" type="text" placeholder="Your username" />
+        <input formControlName="name" class="form-control form-control-lg" type="text" placeholder="Your name" />
       </div>
       <div class="form-group">
-        <input class="form-control form-control-lg" type="text" placeholder="Your email" />
+        <input formControlName="email" class="form-control form-control-lg" type="text" placeholder="Your email" />
       </div>
       <div class="form-group">
-        <input class="form-control form-control-lg" type="text" placeholder="Your number" />
+        <input formControlName="number" class="form-control form-control-lg" type="text" placeholder="Your number" />
       </div>
       <div class="form-group">
         <textarea
@@ -70,10 +70,11 @@
           id="exampleFormControlTextarea1"
           rows="6"
           placeholder="Your message"
+          formControlName="message"
         ></textarea>
       </div>
       <div class="form-group">
-        <button type="button" class="btn btn-danger py-3 px-5">Submit</button>
+        <button type="submit" class="btn btn-danger py-3 px-5">Submit</button>
       </div>
     </form>
   </div>

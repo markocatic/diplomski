@@ -13,6 +13,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JwPaginationComponent } from 'jw-angular-pagination';
 import { ContactComponent } from './pages/contact/contact.component';
 import { AuthorComponent } from './pages/author/author.component';
+import { LaptopComponent } from './pages/laptop/laptop.component';
+import { CheckoutComponent } from './pages/checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { AuthorComponent } from './pages/author/author.component';
     ItemComponent,
     JwPaginationComponent,
     ContactComponent,
-    AuthorComponent
+    AuthorComponent,
+    LaptopComponent,
+    CheckoutComponent
   ],
   imports: [SharedModule, CategoriesRoutingModule, FormsModule, ReactiveFormsModule]
 })

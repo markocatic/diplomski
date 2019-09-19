@@ -17,7 +17,8 @@ export class Product {
     public description?: string,
     public price?: number,
     public image_id?: string,
-    public image_path?: string
+    public image_path?: string,
+    public new_item?: boolean
   ) {
     // this._product_id = product_id;
     // this._brand = brand;

@@ -10,10 +10,10 @@ export class JarService {
   constructor(private http: HttpClient) {}
 
   singup(data) {
-    return this.http.post(`${this.baseUrl}/signup`, data);
+    return this.http.post(`${this.baseUrl}/access/register`, data);
   }
 
   login(data) {
-    return this.http.post(`${this.baseUrl}/login`, data);
+    return this.http.post(`${this.baseUrl}/access/login`, data);
   }
 }

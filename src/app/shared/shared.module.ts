@@ -5,6 +5,7 @@ import * as fromPipes from './pipes';
 import { MaterialModule } from '../material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 const modules: any[] = [CommonModule, MaterialModule, FlexLayoutModule, RouterModule];
 

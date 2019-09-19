@@ -19,6 +19,7 @@ export class HeaderComponent implements OnInit {
   cartPrice: number;
   wishlist: Product[];
   wishlistNumber: number;
+  checkedOut;
 
   constructor(
     private router: Router,
@@ -48,6 +49,12 @@ export class HeaderComponent implements OnInit {
         this.cartNumber = this.carts.length;
         this.cartPrice = this.carts.reduce((previous, current) => previous + +current.price * current.quantity, 0);
         console.log(this.cartPrice, 'PRICE');
+      });
+      this.categoryService.getWishlist(this.user_id).subscribe((response: Product[]) => {
+        console.log('wishlist', response);
+        console.log('user id', this.user_id);
+        this.wishlist = response;
+        this.wishlistNumber = response.length;
       });
     });
 
@@ -82,14 +89,29 @@ export class HeaderComponent implements OnInit {
   }
 
   deleteWishlist(product_id: number) {
-    this.categoryService.deleteWishList(product_id).subscribe((response: boolean) => {
+    this.categoryService.deleteWishList(product_id, this.user_id).subscribe((response: boolean) => {
       console.log(response, 'wishlist deleted');
+      this.categoryService.getWishlist(this.user_id).subscribe((response: Product[]) => {
+        console.log('wishlist', response);
+        console.log('user id', this.user_id);
+        this.wishlist = response;
+        this.wishlistNumber = response.length;
+      });
     });
   }
 
-  insertWishlist(user_id: number, product_id: number) {
-    this.categoryService.insertWishlist(user_id, product_id).subscribe((response: boolean) => {
-      console.log(response, 'wishlist inserted');
+  checkout() {
+    this.categoryService.checkout(this.user_id).subscribe(response => {
+      console.log(response, 'checked out items');
+      this.checkedOut = response;
+      this.categoryService.getCartItems(this.user_id).subscribe((response: Cart[]) => {
+        console.log(response, 'CART');
+        this.carts = response;
+        this.cartNumber = this.carts.length;
+        this.cartPrice = this.carts.reduce((previous, current) => previous + +current.price * current.quantity, 0);
+        console.log(this.cartPrice, 'PRICE');
+      });
+      this.router.navigate(['/checkout'], { state: { data: response } });
     });
   }
 }

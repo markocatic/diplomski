@@ -14,8 +14,10 @@ export class SmartphonesComponent implements OnInit {
   user_id: number;
   pageOfItems: Array<any>;
   products: Product[];
+  productsHolder: Product[];
   showSize: number = 9;
-  priceValue: number;
+  minPriceValue: number = 0;
+  maxPriceValue: number = 9999;
 
   constructor(
     private tokenService: TokenService,
@@ -34,6 +36,7 @@ export class SmartphonesComponent implements OnInit {
 
     this.categoriesService.getAllProducts().subscribe((response: Product[]) => {
       this.products = response;
+      this.productsHolder = response;
       console.log(this.products, 'GET ALL PRODUCTS');
     });
   }
@@ -42,7 +45,7 @@ export class SmartphonesComponent implements OnInit {
     this.pageOfItems = pageOfItems;
   }
 
-  addToCart(product_id: number, quantity?) {
+  addToCart(product_id: number, quantity?: number) {
     this.categoriesService
       .addCartItem(this.user_id, product_id, quantity ? quantity : 1)
       .subscribe((response: Cart) => {
@@ -64,20 +67,31 @@ export class SmartphonesComponent implements OnInit {
     if (event === 'all') {
       this.categoriesService.getAllProducts().subscribe((response: Product[]) => {
         this.products = response;
+        this.productsHolder = response;
       });
     } else if (event === 'samsung') {
       this.categoriesService.getSamsungProducts().subscribe((response: Product[]) => {
         this.products = response;
+        this.productsHolder = response;
       });
     } else {
       this.categoriesService.getIphoneProducts().subscribe((response: Product[]) => {
         this.products = response;
+        this.productsHolder = response;
       });
     }
   }
 
   changePrice() {
-    console.log(this.priceValue);
-    // this.products = this.products.filter(item => item.price > this.priceValue);
+    console.log(this.minPriceValue);
+    this.products = this.productsHolder;
+    this.products = this.products.filter(item => item.price > this.minPriceValue && item.price < this.maxPriceValue);
+  }
+
+  insertWishlist(product_id: number) {
+    this.categoriesService.insertWishlist(this.user_id, product_id).subscribe((response: boolean) => {
+      console.log(response, 'wishlist inserted');
+      this.categoriesService.toRefreshNavigation(true);
+    });
   }
 }

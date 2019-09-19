@@ -14,6 +14,9 @@
             <div class="py-2 text-uppercase">Quantity</div>
           </th>
           <th scope="col" class="border-0 bg-light">
+            <div class="py-2 text-uppercase">Edit</div>
+          </th>
+          <th scope="col" class="border-0 bg-light">
             <div class="py-2 text-uppercase">Remove</div>
           </th>
         </tr>
@@ -39,6 +42,15 @@
               <strong>{{ cart.quantity }}</strong>
             </td>
             <td class="align-middle" [ngClass]="i === 0 ? 'border-0' : ''">
+              <a
+                (click)="getProductId(cart.product_id)"
+                class="text-dark pointer-link"
+                data-toggle="modal"
+                data-target="#exampleModal"
+                ><i class="fa fa-edit"></i
+              ></a>
+            </td>
+            <td class="align-middle" [ngClass]="i === 0 ? 'border-0' : ''">
               <a (click)="removeFromCart(cart.id)" class="text-dark pointer-link"><i class="fa fa-trash"></i></a>
             </td>
           </tr>
@@ -47,4 +59,37 @@
     </table>
   </div>
   <!-- End -->
+</div>
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit product quantity</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input type="number" class="form-control" placeholder="Enter quantity" [formControl]="quantityControl" />
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          [disabled]="quantityControl.value < 1"
+          (click)="editCart(productId)"
+        >
+          Save changes
+        </button>
+      </div>
+    </div>
+  </div>
 </div>

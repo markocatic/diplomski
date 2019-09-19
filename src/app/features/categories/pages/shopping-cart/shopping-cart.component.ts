@@ -4,6 +4,7 @@ import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
 import { CategoriesService } from '../../services/categories.service';
 import { TokenService } from 'src/app/shared/services/token.service';
 import { Cart } from 'src/app/shared/models/cart.model';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -13,6 +14,8 @@ import { Cart } from 'src/app/shared/models/cart.model';
 export class ShoppingCartComponent implements OnInit {
   user_id: number;
   carts: Cart[];
+  productId: number;
+  quantityControl = new FormControl('', [Validators.max(100), Validators.min(1)]);
 
   constructor(private categoriesService: CategoriesService, private tokenService: TokenService) {}
 
@@ -32,6 +35,19 @@ export class ShoppingCartComponent implements OnInit {
         this.carts = response;
         this.categoriesService.toRefreshNavigation(true);
       });
+    });
+  }
+
+  getProductId(product_id: number) {
+    this.productId = product_id;
+    console.log(this.productId);
+  }
+
+  editCart(product_id: number) {
+    console.log(product_id, 'product id');
+    console.log(this.quantityControl.value, 'quantity');
+    this.categoriesService.editCartItem(product_id, this.quantityControl.value).subscribe((response: number) => {
+      console.log(response);
     });
   }
 }

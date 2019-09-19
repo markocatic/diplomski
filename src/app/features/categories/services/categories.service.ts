@@ -54,7 +54,27 @@ export class CategoriesService {
     return this.http.post<boolean>(`${this.baseUrl}/insert`, { user_id, product_id });
   }
 
-  deleteWishList(product_id: number): Observable<boolean> {
-    return this.http.post<boolean>(`${this.baseUrl}/delete`, product_id);
+  deleteWishList(product_id: number, user_id: number): Observable<boolean> {
+    return this.http.post<boolean>(`${this.baseUrl}/delete/${user_id}`, product_id);
+  }
+
+  getNewProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.baseUrl}/getNewProducts`);
+  }
+
+  getTvProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.baseUrl}/getTvProducts`);
+  }
+
+  getLaptopProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.baseUrl}/getLaptopProducts`);
+  }
+
+  checkout(user_id: number): Observable<Product[]> {
+    return this.http.post<Product[]>(`${this.baseUrl}/checkout`, user_id);
+  }
+
+  editCartItem(product_id: number, quantity: number): Observable<number> {
+    return this.http.post<number>(`${this.baseUrl}/editItemInCart/${product_id}`, quantity);
   }
 }
