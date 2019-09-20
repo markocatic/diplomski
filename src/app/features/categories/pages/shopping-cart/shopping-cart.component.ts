@@ -38,16 +38,20 @@ export class ShoppingCartComponent implements OnInit {
     });
   }
 
-  getProductId(product_id: number) {
-    this.productId = product_id;
+  getCartId(id: number) {
+    this.productId = id;
     console.log(this.productId);
   }
 
-  editCart(product_id: number) {
-    console.log(product_id, 'product id');
+  editCart(id: number) {
+    console.log(id, 'product id');
     console.log(this.quantityControl.value, 'quantity');
-    this.categoriesService.editCartItem(product_id, this.quantityControl.value).subscribe((response: number) => {
+    this.categoriesService.editCartItem(id, this.quantityControl.value).subscribe((response: number) => {
       console.log(response);
+      this.categoriesService.getCartItems(this.user_id).subscribe((response: Cart[]) => {
+        console.log(response, 'CART COMPONENT ITEMS');
+        this.carts = response;
+      });
     });
   }
 }

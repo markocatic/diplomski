@@ -40,12 +40,18 @@ export class RegisterComponent implements OnInit {
         name: this.regForm.value.name,
         password_confirmation: this.regForm.value.password_confirmation
       })
-      .subscribe(data => this.handleResponse(data), error => console.log(error));
+      .subscribe(
+        data => {
+          console.log(data);
+          this.handleResponse(data);
+        },
+        error => console.log(error)
+      );
   }
 
   handleResponse(data) {
     this.token.handle(data.access_token);
-    this.router.navigateByUrl('categories/smartphones');
+    this.router.navigateByUrl('/smartphones');
     this.auth.changeAuthStatus(true);
   }
 }

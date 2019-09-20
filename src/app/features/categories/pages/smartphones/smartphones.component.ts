@@ -4,6 +4,7 @@ import { CategoriesService } from '../../services/categories.service';
 import { Product } from 'src/app/shared/models/product.model';
 import { Cart } from 'src/app/shared/models/cart.model';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
   selector: 'app-smartphones',
@@ -13,21 +14,24 @@ import { Router } from '@angular/router';
 export class SmartphonesComponent implements OnInit {
   user_id: number;
   pageOfItems: Array<any>;
-  products: Product[];
+  products: Product[] = [];
   productsHolder: Product[];
   showSize: number = 9;
   minPriceValue: number = 0;
   maxPriceValue: number = 9999;
+  loggedIn: boolean;
 
   constructor(
     private tokenService: TokenService,
     private categoriesService: CategoriesService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
     console.log(this.tokenService.getUser());
     this.user_id = +this.tokenService.getUser();
+    this.authService.authStatus.subscribe(value => (this.loggedIn = value));
 
     // this.categoriesService.getIphoneProducts().subscribe((response: Product[]) => {
     //   console.log(response);

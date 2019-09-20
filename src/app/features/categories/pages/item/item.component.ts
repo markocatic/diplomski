@@ -5,6 +5,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { TokenService } from 'src/app/shared/services/token.service';
 import { Cart } from 'src/app/shared/models/cart.model';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
   selector: 'app-item',
@@ -15,15 +16,19 @@ export class ItemComponent implements OnInit {
   item: Product;
   user_id: string;
   productId: number;
+  loggedIn: boolean;
   quantityControl = new FormControl(0, [Validators.max(100), Validators.min(1)]);
 
   constructor(
     private categoriesService: CategoriesService,
     private tokenService: TokenService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
+    this.authService.authStatus.subscribe(value => (this.loggedIn = value));
+    console.log(this.loggedIn, 'logged');
     this.route.params.subscribe(response => {
       this.productId = +response['id'];
     });
@@ -49,5 +54,14 @@ export class ItemComponent implements OnInit {
         console.log(response);
         this.categoriesService.toRefreshNavigation(true);
       });
+  }
+
+  insertWishlist(product_id: number) {
+    console.log(+this.user_id);
+    console.log(product_id);
+    this.categoriesService.insertWishlist(+this.user_id, product_id).subscribe((response: boolean) => {
+      console.log(response, 'wishlist inserted');
+      this.categoriesService.toRefreshNavigation(true);
+    });
   }
 }

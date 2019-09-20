@@ -213,12 +213,12 @@
     <!-- /store top filter -->
 
     <!-- store products -->
-    <ng-container *ngIf="products">
+    <ng-container *ngIf="products.length > 0; else nodata">
       <div class="row">
         <div class="col-md-4 col-xs-6" *ngFor="let product of pageOfItems">
           <div class="product">
             <div class="product-img">
-              <img [src]="product.image_path" [alt]="product.name" />
+              <img src="../../../../../{{ product.image_path }}" [alt]="product.name" />
               <div class="product-label">
                 <!-- <span class="sale">-30%</span> -->
                 <span *ngIf="product.new_item" class="new">NEW</span>
@@ -227,7 +227,7 @@
             <div class="product-body">
               <p class="product-category">Category</p>
               <h3 class="product-name">
-                <a href="#">{{ product.name }}</a>
+                <a routerLink="/item/{{ product.id }}">{{ product.name }}</a>
               </h3>
               <h4 class="product-price">{{ product.price | currency }}</h4>
               <div class="product-rating">
@@ -238,7 +238,7 @@
                 <i class="fa fa-star"></i>
               </div>
               <div class="product-btns">
-                <button class="add-to-wishlist" (click)="insertWishlist(product.id)">
+                <button class="add-to-wishlist" [disabled]="!loggedIn" (click)="insertWishlist(product.id)">
                   <i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span>
                 </button>
                 <!-- <button class="add-to-compare">
@@ -250,7 +250,7 @@
               </div>
             </div>
             <div class="add-to-cart">
-              <button class="add-to-cart-btn" (click)="addToCart(product.id)">
+              <button class="add-to-cart-btn" [disabled]="!loggedIn" (click)="addToCart(product.id)">
                 <i class="fa fa-shopping-cart"></i> add to cart
               </button>
             </div>
@@ -258,6 +258,9 @@
         </div>
       </div>
     </ng-container>
+    <ng-template #nodata>
+      No data
+    </ng-template>
     <!-- /store products -->
 
     <!-- store bottom filter -->

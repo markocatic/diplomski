@@ -43,7 +43,7 @@
             </td>
             <td class="align-middle" [ngClass]="i === 0 ? 'border-0' : ''">
               <a
-                (click)="getProductId(cart.product_id)"
+                (click)="getCartId(cart.id)"
                 class="text-dark pointer-link"
                 data-toggle="modal"
                 data-target="#exampleModal"
@@ -86,6 +86,7 @@
           class="btn btn-primary"
           [disabled]="quantityControl.value < 1"
           (click)="editCart(productId)"
+          data-dismiss="modal"
         >
           Save changes
         </button>

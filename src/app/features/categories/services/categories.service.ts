@@ -75,6 +75,6 @@ export class CategoriesService {
   }
 
   editCartItem(product_id: number, quantity: number): Observable<number> {
-    return this.http.post<number>(`${this.baseUrl}/editItemInCart/${product_id}`, quantity);
+    return this.http.post<number>(`${this.baseUrl}/editItemInCart/${product_id}`, { quantity });
   }
 }
