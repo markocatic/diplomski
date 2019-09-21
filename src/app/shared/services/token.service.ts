@@ -17,12 +17,20 @@ export class TokenService {
     this.setUser(user);
   }
 
+  handleRole(role) {
+    this.setRole(role);
+  }
+
   set(token) {
     localStorage.setItem('token', token);
   }
 
   setUser(user) {
     localStorage.setItem('user', user);
+  }
+
+  setRole(role) {
+    localStorage.setItem('role', role);
   }
 
   get() {
@@ -37,12 +45,21 @@ export class TokenService {
     return user;
   }
 
+  getRole() {
+    let role = localStorage.getItem('role');
+    return role;
+  }
+
   remove() {
     localStorage.removeItem('token');
   }
 
   removeUser() {
     localStorage.removeItem('user');
+  }
+
+  removeRole() {
+    localStorage.removeItem('role');
   }
 
   isValid() {

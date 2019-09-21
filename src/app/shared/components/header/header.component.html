@@ -155,7 +155,10 @@
                   <div *ngFor="let wish of wishlist" class="cart-list">
                     <div class="product-widget">
                       <div class="product-img">
-                        <img [src]="wish.image_path" alt="wish-image" />
+                        <img
+                          [src]="sanitizer.bypassSecurityTrustUrl('http://localhost:8000/' + wish.image_path)"
+                          alt="wish-image"
+                        />
                       </div>
                       <div class="product-body">
                         <h3 class="product-name">
@@ -195,7 +198,10 @@
                   <div *ngFor="let cart of carts" class="cart-list">
                     <div class="product-widget">
                       <div class="product-img">
-                        <img [src]="cart.picture" alt="product-image" />
+                        <img
+                          [src]="sanitizer.bypassSecurityTrustUrl('http://localhost:8000/' + cart.picture)"
+                          alt="product-image"
+                        />
                       </div>
                       <div class="product-body">
                         <h3 class="product-name">
@@ -248,13 +254,26 @@
     <div id="responsive-nav">
       <!-- NAV -->
       <ul class="main-nav nav navbar-nav">
-        <li><a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a></li>
-        <li><a routerLink="/smartphones" routerLinkActive="active">Smartphones</a></li>
-        <li><a routerLink="/tv" routerLinkActive="active">TV</a></li>
-        <li><a routerLink="/laptop" routerLinkActive="active">Laptop</a></li>
-        <li><a routerLink="/author" routerLinkActive="active">Author</a></li>
-        <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
-        <li><a routerLink="/cart" routerLinkActive="active">Cart</a></li>
+        <ng-container *ngIf="role_id === 2 && loggedIn">
+          <li><a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a></li>
+          <li><a routerLink="/smartphones" routerLinkActive="active">Smartphones</a></li>
+          <li><a routerLink="/tv" routerLinkActive="active">TV</a></li>
+          <li><a routerLink="/laptop" routerLinkActive="active">Laptop</a></li>
+          <li><a routerLink="/author" routerLinkActive="active">Author</a></li>
+          <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
+          <li><a routerLink="/cart" routerLinkActive="active">Cart</a></li>
+        </ng-container>
+        <ng-container *ngIf="!loggedIn">
+          <li><a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a></li>
+          <li><a routerLink="/smartphones" routerLinkActive="active">Smartphones</a></li>
+          <li><a routerLink="/tv" routerLinkActive="active">TV</a></li>
+          <li><a routerLink="/laptop" routerLinkActive="active">Laptop</a></li>
+          <li><a routerLink="/author" routerLinkActive="active">Author</a></li>
+          <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
+        </ng-container>
+        <ng-container *ngIf="role_id === 1 && loggedIn">
+          <li><a routerLink="/admin/user" routerLinkActive="active">Users</a></li>
+        </ng-container>
       </ul>
       <!-- /NAV -->
     </div>

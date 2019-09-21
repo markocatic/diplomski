@@ -6,6 +6,7 @@ import { TokenService } from 'src/app/shared/services/token.service';
 import { Cart } from 'src/app/shared/models/cart.model';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-item',
@@ -23,7 +24,8 @@ export class ItemComponent implements OnInit {
     private categoriesService: CategoriesService,
     private tokenService: TokenService,
     private route: ActivatedRoute,
-    private authService: AuthService
+    private authService: AuthService,
+    private sanitizer: DomSanitizer
   ) {}
 
   ngOnInit() {

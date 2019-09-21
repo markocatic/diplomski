@@ -6,6 +6,7 @@ import { CategoriesService } from 'src/app/features/categories/services/categori
 import { Cart } from '../../models/cart.model';
 import { Observable } from 'rxjs';
 import { Product } from '../../models/product.model';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-header',
@@ -19,13 +20,15 @@ export class HeaderComponent implements OnInit {
   cartPrice: number;
   wishlist: Product[];
   wishlistNumber: number;
+  role_id: number;
   checkedOut;
 
   constructor(
     private router: Router,
     private auth: AuthService,
     private token: TokenService,
-    private categoryService: CategoriesService
+    private categoryService: CategoriesService,
+    private sanitizer: DomSanitizer
   ) {}
 
   public loggedIn: boolean;
@@ -34,6 +37,8 @@ export class HeaderComponent implements OnInit {
     this.auth.authStatus.subscribe(value => (this.loggedIn = value));
     console.log(this.loggedIn);
     this.user_id = +this.token.getUser();
+    console.log(this.user_id, 'USER ID TREBA 1');
+    this.role_id = +this.token.getRole();
     this.categoryService.getCartItems(this.user_id).subscribe((response: Cart[]) => {
       console.log(response, 'CART');
       this.carts = response;
@@ -42,7 +47,10 @@ export class HeaderComponent implements OnInit {
       console.log(this.cartPrice, 'PRICE');
     });
     this.categoryService.refreshNavigation$.subscribe((response: boolean) => {
+      this.user_id = +this.token.getUser();
+      this.role_id = +this.token.getRole();
       console.log(response, 'REFRESH NAV');
+      console.log(this.user_id, 'USEROV ID');
       this.categoryService.getCartItems(this.user_id).subscribe((response: Cart[]) => {
         console.log(response, 'CART');
         this.carts = response;
@@ -70,8 +78,14 @@ export class HeaderComponent implements OnInit {
     event.preventDefault;
     this.token.remove();
     this.token.removeUser();
+    this.token.removeRole();
     this.auth.changeAuthStatus(false);
     this.router.navigateByUrl('/');
+    this.carts = [];
+    this.cartNumber = 0;
+    this.cartPrice = 0;
+    this.wishlist = [];
+    this.wishlistNumber = 0;
   }
 
   deleteFromCart(id: number) {

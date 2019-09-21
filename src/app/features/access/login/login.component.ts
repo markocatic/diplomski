@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { JarService } from 'src/app/shared/services/jar.service';
 import { TokenService } from 'src/app/shared/services/token.service';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { Router } from '@angular/router';
+import { CategoriesService } from '../../categories/services/categories.service';
 
 @Component({
   selector: 'app-login',
@@ -11,17 +12,28 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  regForm: FormGroup = new FormGroup({
-    email: new FormControl(''),
-    password: new FormControl('')
-  });
+  regForm: FormGroup;
 
   constructor(
     private jar: JarService,
     private token: TokenService,
     private auth: AuthService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private categoriesService: CategoriesService
+  ) {
+    this.regForm = new FormGroup({
+      email: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required])
+    });
+  }
+
+  get email() {
+    return this.regForm.get('email');
+  }
+
+  get password() {
+    return this.regForm.get('password');
+  }
 
   ngOnInit() {}
 
@@ -33,7 +45,11 @@ export class LoginComponent implements OnInit {
       data => {
         this.handleResponse(data);
         this.handleUser(data['user']);
+        this.handleRole(data['role']);
+        this.categoriesService.toRefreshNavigation(true);
+        console.log('refresh navvv');
         console.log(data['user'], 'user');
+        console.log(data['role'], 'ROLE');
       },
       error => console.log(error)
     );
@@ -46,5 +62,9 @@ export class LoginComponent implements OnInit {
 
   handleUser(user) {
     this.token.handleUser(user);
+  }
+
+  handleRole(role) {
+    this.token.handleRole(role);
   }
 }

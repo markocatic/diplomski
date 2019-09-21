@@ -4,6 +4,7 @@ import { TokenService } from 'src/app/shared/services/token.service';
 import { CategoriesService } from '../../services/categories.service';
 import { Cart } from 'src/app/shared/models/cart.model';
 import { Router } from '@angular/router';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-laptop',
@@ -15,7 +16,12 @@ export class LaptopComponent implements OnInit {
   products: Product[];
   pageOfItems: Array<any>;
 
-  constructor(private tokenService: TokenService, private categoryService: CategoriesService, private router: Router) {}
+  constructor(
+    private tokenService: TokenService,
+    private categoryService: CategoriesService,
+    private router: Router,
+    private sanitizer: DomSanitizer
+  ) {}
 
   ngOnInit() {
     this.user_id = +this.tokenService.getUser();

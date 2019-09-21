@@ -5,6 +5,7 @@ import { Product } from 'src/app/shared/models/product.model';
 import { Cart } from 'src/app/shared/models/cart.model';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-smartphones',
@@ -25,7 +26,8 @@ export class SmartphonesComponent implements OnInit {
     private tokenService: TokenService,
     private categoriesService: CategoriesService,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private sanitizer: DomSanitizer
   ) {}
 
   ngOnInit() {
@@ -40,6 +42,7 @@ export class SmartphonesComponent implements OnInit {
 
     this.categoriesService.getAllProducts().subscribe((response: Product[]) => {
       this.products = response;
+
       this.productsHolder = response;
       console.log(this.products, 'GET ALL PRODUCTS');
     });

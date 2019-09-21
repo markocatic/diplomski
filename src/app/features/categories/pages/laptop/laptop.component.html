@@ -63,7 +63,7 @@
           />
         </div>
 
-        <div class="input-number price-max w-100 my-1">
+        <div class="input-number price-max w-100 my-1" id="price-max">
           <input
             type="number"
             class="form-control"
@@ -202,7 +202,10 @@
         <div class="col-md-4 col-xs-6" *ngFor="let product of pageOfItems">
           <div class="product">
             <div class="product-img">
-              <img [src]="product.image_path" [alt]="product.name" />
+              <img
+                [src]="sanitizer.bypassSecurityTrustUrl('http://localhost:8000/' + product.image_path)"
+                [alt]="product.name"
+              />
               <div class="product-label">
                 <!-- <span class="sale">-30%</span> -->
                 <span *ngIf="product.new_item" class="new">NEW</span>

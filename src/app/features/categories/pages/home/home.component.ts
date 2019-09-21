@@ -4,6 +4,7 @@ import { TokenService } from 'src/app/shared/services/token.service';
 import { Product } from 'src/app/shared/models/product.model';
 import { Cart } from 'src/app/shared/models/cart.model';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
@@ -18,7 +19,8 @@ export class HomeComponent implements OnInit {
   constructor(
     private categoriesService: CategoriesService,
     private tokenService: TokenService,
-    private authService: AuthService
+    private authService: AuthService,
+    private sanitizer: DomSanitizer
   ) {}
 
   ngOnInit() {

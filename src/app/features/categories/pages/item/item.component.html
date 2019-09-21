@@ -4,7 +4,7 @@
     <div id="product-main-img">
       <div class="product-preview">
         <ng-container *ngIf="item?.image_path">
-          <img [src]="item.image_path" alt="" />
+          <img [src]="sanitizer.bypassSecurityTrustUrl('http://localhost:8000/' + item.image_path)" [alt]="item.name" />
         </ng-container>
       </div>
 
