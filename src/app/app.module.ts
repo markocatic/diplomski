@@ -3,7 +3,6 @@ import { NgModule, LOCALE_ID } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MaterialModule } from './material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -25,7 +24,6 @@ registerLocaleData(localeDe, 'de');
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
-    MaterialModule,
     FlexLayoutModule,
     SharedModule,
     ReactiveFormsModule,
