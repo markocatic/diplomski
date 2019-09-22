@@ -4,10 +4,11 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
 import { UserPanelComponent } from './pages/user-panel/user-panel.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ProductPanelComponent } from './pages/product-panel/product-panel.component';
 
 @NgModule({
-  declarations: [AdminComponent, UserPanelComponent],
-  imports: [SharedModule, AdminRoutingModule, FormsModule]
+  declarations: [AdminComponent, UserPanelComponent, ProductPanelComponent],
+  imports: [SharedModule, AdminRoutingModule, FormsModule, ReactiveFormsModule]
 })
 export class AdminModule {}

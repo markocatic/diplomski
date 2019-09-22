@@ -22,4 +22,16 @@ export class UserAdminService {
   deleteUser(id: number): Observable<number> {
     return this.http.post<number>(`${this.baseUrl}/userDelete`, id);
   }
+
+  updateUser(id: number, name: string, email: string, password: string, role_id?: number): Observable<number> {
+    return this.http.post<number>(`${this.baseUrl}/update/${id}`, { name, email, password, role_id });
+
+    // else {
+    //   return this.http.post<number>(`${this.baseUrl}/update/${id}`, { name, email, password });
+    // }
+  }
+
+  save(name: string, email: string, password: string, role_id: number): Observable<number> {
+    return this.http.post<number>(`${this.baseUrl}/save`, { name, email, password, role_id });
+  }
 }
