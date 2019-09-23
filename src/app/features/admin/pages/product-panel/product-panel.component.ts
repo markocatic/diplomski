@@ -59,14 +59,18 @@ export class ProductPanelComponent implements OnInit {
     console.log(this.productForm.value.description_short);
     console.log(this.productForm.value.price);
     console.log(this.productForm.value.new_item);
+    console.log(this.productForm.value.image);
+    const formData = new FormData();
+    formData.append('image', this.productForm.value.image);
+    console.log(formData.get('image'), 'test');
   }
 
   onFileSelect(event) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
-      console.log(file);
+      // console.log(file);
       this.productForm.get('image').setValue(file);
-      console.log(this.productForm.value.image);
+      // console.log(this.productForm.value.image);
     }
   }
 }
