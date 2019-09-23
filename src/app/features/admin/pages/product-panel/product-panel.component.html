@@ -1,1 +1,287 @@
-<p>product-panel works!</p>
+<div class="col-lg-12 p-5 bg-white rounded shadow-sm mb-5">
+  <!-- Shopping cart table -->
+  <a class="btn btn-primary my-2 float-right" data-toggle="modal" data-target="#newUserModal">
+    Add a new user
+  </a>
+  <div class="clearfix"></div>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col" class="border-0 bg-light">
+            <div class="py-2 text-uppercase">#</div>
+          </th>
+          <th scope="col" class="border-0 bg-light"></th>
+          <th scope="col" class="border-0 bg-light">
+            <div class="py-2 text-uppercase">Name</div>
+          </th>
+          <th scope="col" class="border-0 bg-light">
+            <div class="py-2 text-uppercase">Brand</div>
+          </th>
+          <th scope="col" class="border-0 bg-light">
+            <div class="py-2 text-uppercase">Description</div>
+          </th>
+          <th scope="col" class="border-0 bg-light">
+            <div class="py-2 text-uppercase">Price</div>
+          </th>
+          <th scope="col" class="border-0 bg-light">
+            <div class="py-2 text-uppercase">New</div>
+          </th>
+          <th scope="col" class="border-0 bg-light">
+            <div class="py-2 text-uppercase">Edit</div>
+          </th>
+          <th scope="col" class="border-0 bg-light">
+            <div class="py-2 text-uppercase">Remove</div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let product of products; let i = index">
+          <tr>
+            <td class="align-middle" [ngClass]="i === 0 ? 'border-0' : ''">
+              <strong>{{ i }}</strong>
+            </td>
+            <th scope="row" [ngClass]="i === 0 ? 'border-0' : ''">
+              <div class="p-2">
+                <img
+                  [src]="sanitizer.bypassSecurityTrustUrl('http://localhost:8000/' + product.image_path)"
+                  [alt]="product.name"
+                  width="70"
+                  class="img-fluid rounded shadow-sm"
+                />
+              </div>
+            </th>
+            <td class="align-middle" [ngClass]="i === 0 ? 'border-0' : ''">
+              <strong>{{ product.name }}</strong>
+            </td>
+            <td class="align-middle" [ngClass]="i === 0 ? 'border-0' : ''">
+              <strong>{{ product.brand }}</strong>
+            </td>
+            <td class="align-middle" [ngClass]="i === 0 ? 'border-0' : ''">
+              <strong>{{ product.description_short }}</strong>
+            </td>
+            <td class="align-middle" [ngClass]="i === 0 ? 'border-0' : ''">
+              <strong>{{ product.price }}</strong>
+            </td>
+            <td class="align-middle" [ngClass]="i === 0 ? 'border-0' : ''">
+              <strong>{{ product.new_item }}</strong>
+            </td>
+            <td class="align-middle" [ngClass]="i === 0 ? 'border-0' : ''">
+              <a
+                (click)="getOneProduct(product.id)"
+                class="text-dark pointer-link"
+                data-toggle="modal"
+                data-target="#exampleModal"
+                ><i class="fa fa-edit"></i
+              ></a>
+            </td>
+            <td class="align-middle" [ngClass]="i === 0 ? 'border-0' : ''">
+              <a class="text-dark pointer-link" (click)="deleteProduct(product.id)"><i class="fa fa-trash"></i></a>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+  <!-- End -->
+</div>
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit product quantity</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input type="number" class="form-control" placeholder="Enter quantity" />
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="editCart(productId)" data-dismiss="modal">
+          Save changes
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="newUserModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="newUserModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="newUserModalLabel">Add a new product:</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form [formGroup]="productForm">
+        <div class="modal-body">
+          <ng-container>
+            <input type="number" class="form-control my-1" placeholder="Enter brand" formControlName="brand_id" />
+
+            <input type="text" class="form-control my-1" placeholder="Enter name" formControlName="name" />
+
+            <input
+              type="text"
+              class="form-control my-1"
+              placeholder="Enter description"
+              formControlName="description"
+            />
+            <input
+              type="text"
+              class="form-control my-1"
+              placeholder="Enter short description"
+              formControlName="description_short"
+            />
+            <input type="number" class="form-control my-1" placeholder="Enter price" formControlName="price" />
+
+            <input type="number" class="form-control my-1" placeholder="Is the item new" formControlName="new_item" />
+            <input type="file" class="form-control-file" id="exampleFormControlFile1" (change)="onFileSelect($event)" />
+          </ng-container>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button (click)="onAdd()" type="button" class="btn btn-primary" data-dismiss="modal">
+            Save changes
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- <div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit product:</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form [formGroup]="userForm">
+        <div class="modal-body">
+          <ng-container *ngIf="oneUser">
+            <input
+              type="text"
+              class="form-control my-1"
+              formControlName="name"
+              [value]="oneUser.name"
+              placeholder="Enter name"
+            />
+            <span class="text-danger" *ngIf="updateName.errors?.required">Name is required.</span>
+            <span class="text-danger" *ngIf="updateName.errors?.minlength"
+              >Name must be atleast 3 characters long.</span
+            >
+            <input type="password" class="form-control my-1" formControlName="password" placeholder="Enter password" />
+            <span class="text-danger" *ngIf="updatePass.errors?.required">Password is required.</span>
+            <span class="text-danger" *ngIf="updatePass.errors?.minlength"
+              >Password must be atleast 3 characters long.</span
+            >
+            <input
+              type="email"
+              class="form-control my-1"
+              formControlName="email"
+              [value]="oneUser.email"
+              placeholder="Enter email"
+            />
+            <span class="text-danger" *ngIf="updateEmail.invalid">Email is invalid.</span>
+
+            <input
+              type="number"
+              class="form-control my-1"
+              formControlName="role_id"
+              [value]="oneUser.role_id"
+              placeholder="Enter role"
+            />
+            <span class="text-danger" *ngIf="updateRole.invalid">Role is required.</span>
+          </ng-container>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button
+            [disabled]="!userForm.valid"
+            (click)="onSubmit(oneUser.id)"
+            type="button"
+            class="btn btn-primary"
+            data-dismiss="modal"
+          >
+            Save changes
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div> -->
+
+<!-- <div
+  class="modal fade"
+  id="newUserModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="newUserModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="newUserModalLabel">Add a new user:</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form [formGroup]="newUserForm">
+        <div class="modal-body">
+          <ng-container>
+            <input type="text" class="form-control my-1" formControlName="name" placeholder="Enter name" />
+            <span class="text-danger" *ngIf="addName.errors?.required">Name is required.</span>
+            <span class="text-danger" *ngIf="addName.errors?.minlength">Name must be atleast 3 characters long.</span>
+            <input type="password" class="form-control my-1" formControlName="password" placeholder="Enter password" />
+            <span class="text-danger" *ngIf="addPass.errors?.required">Password is required.</span>
+            <span class="text-danger" *ngIf="addPass.errors?.minlength"
+              >Password must be atleast 3 characters long.</span
+            >
+            <input type="email" class="form-control my-1" formControlName="email" placeholder="Enter email" />
+            <span class="text-danger" *ngIf="addEmail.invalid">Email is invalid.</span>
+            <input type="number" class="form-control my-1" formControlName="role_id" placeholder="Enter role" />
+            <span class="text-danger" *ngIf="addRole.invalid">Role is required.</span>
+          </ng-container>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button
+            [disabled]="!newUserForm.valid"
+            (click)="onAdd()"
+            type="button"
+            class="btn btn-primary"
+            data-dismiss="modal"
+          >
+            Save changes
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div> -->
