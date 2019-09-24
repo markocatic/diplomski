@@ -4,4 +4,5 @@ export class Contact {
   location: string;
   location2: string;
   phone: string;
+  answered?: boolean;
 }

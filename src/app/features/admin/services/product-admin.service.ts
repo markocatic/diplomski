@@ -13,23 +13,13 @@ export class ProductAdminService {
     return this.http.post<number>(`${this.baseUrl}/deleteProduct`, id);
   }
 
-  saveProduct(
-    brand_id: number,
-    name: string,
-    description: string,
-    description_short: string,
-    price: number,
-    new_item: number,
-    image: FormData
-  ) {
-    return this.http.post<number>(`${this.baseUrl}/saveProduct`, {
-      brand_id,
-      name,
-      description,
-      description_short,
-      price,
-      new_item,
-      image
-    });
+  saveProduct(image: FormData) {
+    console.log(image.get('image'), 'image');
+    // debugger;
+    return this.http.post<number>(`${this.baseUrl}/saveProduct`, image);
+  }
+
+  updateProduct(image: FormData) {
+    return this.http.post<number>(`${this.baseUrl}/update`, image);
   }
 }

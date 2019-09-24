@@ -16,6 +16,7 @@ import { AuthService } from './shared/services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { JwPaginationComponent } from 'jw-angular-pagination';
 import { RouterModule } from '@angular/router';
+import { AdminGuard } from './shared/guards/admin.guard';
 registerLocaleData(localeDe, 'de');
 @NgModule({
   declarations: [AppComponent],
@@ -38,7 +39,8 @@ registerLocaleData(localeDe, 'de');
     {
       provide: LOCALE_ID,
       useValue: 'de-DE'
-    }
+    },
+    AdminGuard
   ],
   bootstrap: [AppComponent]
 })

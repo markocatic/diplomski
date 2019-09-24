@@ -12,6 +12,7 @@ import { AuthorComponent } from './pages/author/author.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { LaptopComponent } from './pages/laptop/laptop.component';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
+import { AuthGuard } from 'src/app/shared/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -22,13 +23,13 @@ const routes: Routes = [
       { path: 'home', component: HomeComponent },
       { path: 'smartphones', component: SmartphonesComponent },
       { path: 'tv', component: TvComponent },
-      { path: 'cart', component: ShoppingCartComponent },
+      { path: 'cart', component: ShoppingCartComponent, canActivate: [AuthGuard] },
       { path: 'iphone', component: IphoneComponent },
       { path: 'item/:id', component: ItemComponent },
       { path: 'author', component: AuthorComponent },
       { path: 'contact', component: ContactComponent },
       { path: 'laptop', component: LaptopComponent },
-      { path: 'checkout', component: CheckoutComponent }
+      { path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard] }
       // { path: '**', redirectTo: 'home', pathMatch: 'full' }
     ]
   }

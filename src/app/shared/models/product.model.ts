@@ -16,7 +16,7 @@ export class Product {
     public description_short?: string,
     public description?: string,
     public price?: number,
-    public image_id?: string,
+    public image_id?: number,
     public image_path?: string,
     public new_item?: boolean
   ) {

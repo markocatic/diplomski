@@ -14,13 +14,22 @@ export class ProductPanelComponent implements OnInit {
   products: Product[];
   oneProduct: Product;
   productForm: FormGroup;
-
+  oneProductForm: FormGroup;
   constructor(
     private categoriesService: CategoriesService,
-    private sanitizer: DomSanitizer,
+    public sanitizer: DomSanitizer,
     private productAdmin: ProductAdminService
   ) {
     this.productForm = new FormGroup({
+      brand_id: new FormControl('', Validators.required),
+      name: new FormControl('', [Validators.required, Validators.maxLength(20), Validators.minLength(3)]),
+      description: new FormControl('', [Validators.required, Validators.maxLength(20), Validators.minLength(3)]),
+      description_short: new FormControl('', [Validators.required, Validators.maxLength(20), Validators.minLength(3)]),
+      price: new FormControl('', [Validators.required, Validators.maxLength(20), Validators.minLength(3)]),
+      new_item: new FormControl('', [Validators.required]),
+      image: new FormControl('')
+    });
+    this.oneProductForm = new FormGroup({
       brand_id: new FormControl('', Validators.required),
       name: new FormControl('', [Validators.required, Validators.maxLength(20), Validators.minLength(3)]),
       description: new FormControl('', [Validators.required, Validators.maxLength(20), Validators.minLength(3)]),
@@ -37,9 +46,47 @@ export class ProductPanelComponent implements OnInit {
     });
   }
 
+  editProduct() {
+    console.log(this.productForm.value.brand_id);
+    const brand_id = this.productForm.value.brand_id;
+    console.log(this.productForm.value.name);
+    const name = this.productForm.value.name;
+    console.log(this.productForm.value.description);
+    const description = this.productForm.value.description;
+    console.log(this.productForm.value.description_short);
+    const description_short = this.productForm.value.description_short;
+    console.log(this.productForm.value.price);
+    const price = this.productForm.value.price;
+    console.log(this.productForm.value.new_item);
+    const new_item = this.productForm.value.new_item;
+    console.log(this.productForm.value.image);
+    const image = new FormData();
+    image.append('image', this.productForm.value.image);
+    console.log(image.get('image'), 'test');
+    image.append('brand_id', brand_id);
+    image.append('name', name);
+    image.append('description', description);
+    image.append('description_short', description_short);
+    image.append('price', price);
+    image.append('new_item', new_item);
+    this.productAdmin.updateProduct(image).subscribe(response => {
+      console.log(response);
+      this.categoriesService.getAllProducts().subscribe((response: Product[]) => {
+        this.products = response;
+      });
+    });
+  }
+
   getOneProduct(id: number) {
     this.categoriesService.getOneProduct(id).subscribe((response: Product) => {
       this.oneProduct = response;
+      this.oneProductForm.patchValue({ brand_id: response.brand_id });
+      this.oneProductForm.patchValue({ name: response.name });
+      this.oneProductForm.patchValue({ description: response.description });
+      this.oneProductForm.patchValue({ description_short: response.description_short });
+      this.oneProductForm.patchValue({ price: response.price });
+      this.oneProductForm.patchValue({ new_item: response.new_item });
+      // this.oneProductForm.patchValue({new_item: response.new_item});
     });
   }
 
@@ -54,15 +101,33 @@ export class ProductPanelComponent implements OnInit {
 
   onAdd() {
     console.log(this.productForm.value.brand_id);
+    const brand_id = this.productForm.value.brand_id;
     console.log(this.productForm.value.name);
+    const name = this.productForm.value.name;
     console.log(this.productForm.value.description);
+    const description = this.productForm.value.description;
     console.log(this.productForm.value.description_short);
+    const description_short = this.productForm.value.description_short;
     console.log(this.productForm.value.price);
+    const price = this.productForm.value.price;
     console.log(this.productForm.value.new_item);
+    const new_item = this.productForm.value.new_item;
     console.log(this.productForm.value.image);
-    const formData = new FormData();
-    formData.append('image', this.productForm.value.image);
-    console.log(formData.get('image'), 'test');
+    const image = new FormData();
+    image.append('image', this.productForm.value.image);
+    console.log(image.get('image'), 'test');
+    image.append('brand_id', brand_id);
+    image.append('name', name);
+    image.append('description', description);
+    image.append('description_short', description_short);
+    image.append('price', price);
+    image.append('new_item', new_item);
+    this.productAdmin.saveProduct(image).subscribe(response => {
+      console.log(response);
+      this.categoriesService.getAllProducts().subscribe((response: Product[]) => {
+        this.products = response;
+      });
+    });
   }
 
   onFileSelect(event) {
