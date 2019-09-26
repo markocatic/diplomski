@@ -6,6 +6,8 @@ import { UserPanelComponent } from './pages/user-panel/user-panel.component';
 import { ProductPanelComponent } from './pages/product-panel/product-panel.component';
 import { AdminGuard } from 'src/app/shared/guards/admin.guard';
 import { AuthGuard } from 'src/app/shared/guards/auth.guard';
+import { ContactPanelComponent } from './pages/contact-panel/contact-panel.component';
+import { TransactionsComponent } from './pages/transactions/transactions.component';
 
 const routes: Routes = [
   {
@@ -14,7 +16,9 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'user', pathMatch: 'full', canActivate: [AdminGuard] },
       { path: 'user', component: UserPanelComponent, canActivate: [AdminGuard] },
-      { path: 'product', component: ProductPanelComponent, canActivate: [AdminGuard] }
+      { path: 'product', component: ProductPanelComponent, canActivate: [AdminGuard] },
+      { path: 'messages', component: ContactPanelComponent, canActivate: [AdminGuard] },
+      { path: 'transactions', component: TransactionsComponent, canActivate: [AdminGuard] }
     ]
   }
 ];

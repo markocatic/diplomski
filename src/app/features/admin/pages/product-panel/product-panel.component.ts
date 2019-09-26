@@ -15,6 +15,7 @@ export class ProductPanelComponent implements OnInit {
   oneProduct: Product;
   productForm: FormGroup;
   oneProductForm: FormGroup;
+  pageOfItems: Array<any>;
   constructor(
     private categoriesService: CategoriesService,
     public sanitizer: DomSanitizer,
@@ -46,22 +47,26 @@ export class ProductPanelComponent implements OnInit {
     });
   }
 
-  editProduct() {
-    console.log(this.productForm.value.brand_id);
-    const brand_id = this.productForm.value.brand_id;
-    console.log(this.productForm.value.name);
-    const name = this.productForm.value.name;
-    console.log(this.productForm.value.description);
-    const description = this.productForm.value.description;
-    console.log(this.productForm.value.description_short);
-    const description_short = this.productForm.value.description_short;
-    console.log(this.productForm.value.price);
-    const price = this.productForm.value.price;
-    console.log(this.productForm.value.new_item);
-    const new_item = this.productForm.value.new_item;
-    console.log(this.productForm.value.image);
+  onChangePage(pageOfItems: Array<any>) {
+    this.pageOfItems = pageOfItems;
+  }
+
+  editProduct(id: number) {
+    console.log(this.oneProductForm.value.brand_id);
+    const brand_id = this.oneProductForm.value.brand_id;
+    console.log(this.oneProductForm.value.name);
+    const name = this.oneProductForm.value.name;
+    console.log(this.oneProductForm.value.description);
+    const description = this.oneProductForm.value.description;
+    console.log(this.oneProductForm.value.description_short);
+    const description_short = this.oneProductForm.value.description_short;
+    console.log(this.oneProductForm.value.price);
+    const price = this.oneProductForm.value.price;
+    console.log(this.oneProductForm.value.new_item);
+    const new_item = this.oneProductForm.value.new_item;
+    console.log(this.oneProductForm.value.image);
     const image = new FormData();
-    image.append('image', this.productForm.value.image);
+    image.append('image', this.oneProductForm.value.image);
     console.log(image.get('image'), 'test');
     image.append('brand_id', brand_id);
     image.append('name', name);
@@ -69,7 +74,7 @@ export class ProductPanelComponent implements OnInit {
     image.append('description_short', description_short);
     image.append('price', price);
     image.append('new_item', new_item);
-    this.productAdmin.updateProduct(image).subscribe(response => {
+    this.productAdmin.updateProduct(image, id).subscribe(response => {
       console.log(response);
       this.categoriesService.getAllProducts().subscribe((response: Product[]) => {
         this.products = response;
@@ -135,6 +140,15 @@ export class ProductPanelComponent implements OnInit {
       const file = event.target.files[0];
       // console.log(file);
       this.productForm.get('image').setValue(file);
+      // console.log(this.productForm.value.image);
+    }
+  }
+
+  onFileChange(event) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      // console.log(file);
+      this.oneProductForm.get('image').setValue(file);
       // console.log(this.productForm.value.image);
     }
   }

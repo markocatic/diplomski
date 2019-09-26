@@ -66,5 +66,9 @@ export class LoginComponent implements OnInit {
 
   handleRole(role) {
     this.token.handleRole(role);
+    if (role === 1) {
+      console.log('redIREKCIJA');
+      this.router.navigateByUrl('/admin/user');
+    }
   }
 }

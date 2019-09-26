@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit {
   user_id: number;
   newProducts: Product[];
   loggedIn: boolean;
+  pageOfItems: Array<any>;
 
   constructor(
     private categoriesService: CategoriesService,
@@ -30,6 +31,10 @@ export class HomeComponent implements OnInit {
       console.log('new products', response);
       this.newProducts = response;
     });
+  }
+
+  onChangePage(pageOfItems: Array<any>) {
+    this.pageOfItems = pageOfItems;
   }
 
   insertWishlist(product_id: number) {

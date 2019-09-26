@@ -13,6 +13,7 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { LaptopComponent } from './pages/laptop/laptop.component';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
 import { AuthGuard } from 'src/app/shared/guards/auth.guard';
+import { OrdersComponent } from './pages/orders/orders.component';
 
 const routes: Routes = [
   {
@@ -29,7 +30,8 @@ const routes: Routes = [
       { path: 'author', component: AuthorComponent },
       { path: 'contact', component: ContactComponent },
       { path: 'laptop', component: LaptopComponent },
-      { path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard] }
+      { path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard] },
+      { path: 'order/:id', component: OrdersComponent, canActivate: [AuthGuard] }
       // { path: '**', redirectTo: 'home', pathMatch: 'full' }
     ]
   }

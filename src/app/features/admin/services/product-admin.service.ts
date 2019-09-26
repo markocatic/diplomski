@@ -19,7 +19,7 @@ export class ProductAdminService {
     return this.http.post<number>(`${this.baseUrl}/saveProduct`, image);
   }
 
-  updateProduct(image: FormData) {
-    return this.http.post<number>(`${this.baseUrl}/update`, image);
+  updateProduct(image: FormData, id: number) {
+    return this.http.post<number>(`${this.baseUrl}/updateProduct/${id}`, image);
   }
 }

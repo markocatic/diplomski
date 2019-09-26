@@ -19,6 +19,8 @@ export class AdminGuard implements CanActivate {
         return false;
       }
     }
+    // console.log('navigating');
+    // this.router.navigateByUrl('/admin/user');
     return true;
   }
   constructor(private token: TokenService, private router: Router) {}

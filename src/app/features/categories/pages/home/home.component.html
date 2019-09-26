@@ -79,7 +79,7 @@
           <!-- tab -->
           <ng-container *ngIf="newProducts">
             <!-- product -->
-            <div class="col-md-4 col-xs-6" *ngFor="let new of newProducts">
+            <div class="col-md-4 col-xs-6" *ngFor="let new of pageOfItems">
               <div class="product">
                 <div class="product-img">
                   <img
@@ -124,11 +124,9 @@
               </div>
             </div>
           </ng-container>
-          <!-- /product -->
-
-          <!-- product -->
-
-          <!-- /product -->
+          <div class="store-filter clearfix">
+            <jw-pagination [items]="newProducts" [pageSize]="9" (changePage)="onChangePage($event)"></jw-pagination>
+          </div>
 
           <!-- /tab -->
         </div>

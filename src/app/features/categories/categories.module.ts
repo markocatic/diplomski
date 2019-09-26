@@ -14,6 +14,7 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { AuthorComponent } from './pages/author/author.component';
 import { LaptopComponent } from './pages/laptop/laptop.component';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
+import { OrdersComponent } from './pages/orders/orders.component';
 
 @NgModule({
   declarations: [
@@ -24,12 +25,12 @@ import { CheckoutComponent } from './pages/checkout/checkout.component';
     HomeComponent,
     IphoneComponent,
     ItemComponent,
-    JwPaginationComponent,
     ContactComponent,
     AuthorComponent,
     LaptopComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    OrdersComponent
   ],
-  imports: [SharedModule, CategoriesRoutingModule, FormsModule, ReactiveFormsModule]
+  imports: [SharedModule, CategoriesRoutingModule, FormsModule, ReactiveFormsModule, SharedModule]
 })
 export class CategoriesModule {}

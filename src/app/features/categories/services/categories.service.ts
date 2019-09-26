@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, ReplaySubject } from 'rxjs';
 import { Product } from 'src/app/shared/models/product.model';
 import { Cart } from 'src/app/shared/models/cart.model';
+import { Order } from 'src/app/shared/models/order.model';
 
 @Injectable({
   providedIn: 'root'
@@ -76,5 +77,9 @@ export class CategoriesService {
 
   editCartItem(product_id: number, quantity: number): Observable<number> {
     return this.http.post<number>(`${this.baseUrl}/editItemInCart/${product_id}`, { quantity });
+  }
+
+  getUserTransactions(user_id: number): Observable<Order[]> {
+    return this.http.get<Order[]>(`${this.baseUrl}/getUserOrders/${user_id}`);
   }
 }

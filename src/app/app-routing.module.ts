@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminGuard } from './shared/guards/admin.guard';
+import { LoggedGuard } from './shared/guards/logged.guard';
 
 const routes: Routes = [
   {
@@ -13,7 +14,8 @@ const routes: Routes = [
   },
   {
     path: 'access',
-    loadChildren: './features/access/access.module#AccessModule'
+    loadChildren: './features/access/access.module#AccessModule',
+    canActivate: [LoggedGuard]
   }
 ];
 

@@ -262,6 +262,7 @@
           <li><a routerLink="/author" routerLinkActive="active">Author</a></li>
           <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
           <li><a routerLink="/cart" routerLinkActive="active">Cart</a></li>
+          <li><a routerLink="/order/{{ user_id }}" routerLinkActive="active">Orders</a></li>
         </ng-container>
         <ng-container *ngIf="!loggedIn">
           <li><a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a></li>
@@ -274,6 +275,8 @@
         <ng-container *ngIf="role_id === 1 && loggedIn">
           <li><a routerLink="/admin/user" routerLinkActive="active">Users</a></li>
           <li><a routerLink="/admin/product" routerLinkActive="active">Products</a></li>
+          <li><a routerLink="/admin/messages" routerLinkActive="active">Messages</a></li>
+          <li><a routerLink="/admin/transactions" routerLinkActive="active">Transactions</a></li>
         </ng-container>
       </ul>
       <!-- /NAV -->
